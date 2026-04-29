@@ -1,21 +1,37 @@
 package ru.stqa.geometry.figures;
 
 public class Triangle {
-    public static void printTriangleArea(double a, double b, double c) {
-        String text = String.format("Площадь треугольника со сторонами %f,%f и %f  = %f", a, b, c, getArea(a, b, c));
-        System.out.println(text);
+
+    double firstSide;
+    double secondSide;
+    double thirdSide;
+
+    //добавлен конструктор для Triangle
+    public Triangle(double firstSide, double secondSide, double thirdSide) {
+        this.firstSide = firstSide;
+        this.secondSide = secondSide;
+        this.thirdSide = thirdSide;
     }
 
-    public static double getArea(double a, double b, double c) {
+    //принтер
+
+    public String printTriangleArea() {
+
+        String text = String.format("Площадь треугольника со сторонами %f,%f и %f  = %f", this.firstSide, this.secondSide, this.thirdSide, getArea());
+        return text;
+    }
+
+    //вычисление площади треугольника
+
+    public double getArea() {
         // Вычисление полупериметра
-        double p = (a + b + c) / 2.0;
+        double p = (this.firstSide+ this.secondSide + this.thirdSide) / 2.0;
         // Вычисление площади по формуле Герона
-        double area = Math.sqrt(p * (p - a) * (p - b) * (p - c));
-
-        return area;
+        return Math.sqrt(p * (p - this.firstSide) * (p - this.secondSide) * (p - this.thirdSide));
     }
+    //вычисление периметра треугольника
 
-    public static double getPerimeter(double v, double v1, double v2) {
-        return v + v1 + v2;
+    public double getPerimeter() {
+        return this.firstSide + this.secondSide + this.thirdSide;
     }
 }
